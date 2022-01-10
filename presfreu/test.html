@@ -1,1 +1,30 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eurostat-map.js</title>
+</head>
+
+<body>
+    <svg id="map"></svg>
+    <script src="https://unpkg.com/eurostat-map"></script>
+    <script>
+        let map = eurostatmap
+            .map("ch")
+            .title("Population in Europe")
+            .titleFontSize(40)
+            .titleFill("#444")
+            .scale("20M")
+            .nutsYear(2016)
+            .stat( { eurostatDatasetCode:"demo_r_d3dens", unitText: "people/km²" } )
+            .classifMethod("threshold").threshold([50, 75, 100, 150, 300, 850])
+            .tooltipShowFlags(false)
+            .legend({ x:10, y:180, title: "Density, people/km²", labelDecNb: 0 })
+            map.build();
+    </script>
+</body>
+
+</html>
