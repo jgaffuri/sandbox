@@ -73,7 +73,7 @@
             //{ nom:"Saint-Jean-Pied-de-Port", lon:"", lat:"", url:""}
             //{ nom:"", lon:"", lat:"", url:""}
         ];
-        const icon1 = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
+        //const icon1 = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
 
         var map = L.map('map').setView([46.797, 3.042], 6);
 
@@ -89,7 +89,7 @@
 
         for (let i = 0; i < lay1.length; i++) {
             const m = lay1[i]
-            L.marker([m.lat, m.lon], {title:m.nom , icon:icon1}).addTo(map)
+            L.marker([m.lat, m.lon], {title:m.nom /*, icon:icon1*/}).addTo(map)
                 .bindPopup('<b>' + m.nom + '</b><br /><a href="' + m.url + '">Read article</a>');
         }
 
