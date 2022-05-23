@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EU French presidency - map</title>
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .leaflet-container {
+            height: 400px;
+            width: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="map" style="width: 800px; height: 600px;"></div>
+
+    <script>
+
+        //LIEUX DES ARTICLES
+        const lay1 = [
+            { nom: "Mercy-le-Haut", lon: "5.82527", lat: "49.36854", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-4.aspx" },
+            { nom: "Amiens", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-5.aspx" },
+            { nom: "Rochefort", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-6.aspx" },
+            { nom: "Wallers-Arenberg", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-8.aspx" },
+            { nom: "Nérac", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-9.aspx" },
+            { nom: "Lille", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-10.aspx" },
+            { nom: "Arcachon-Île aux Oiseaux", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-11.aspx" },
+            { nom: "Marseille", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-12.aspx" },
+            { nom: "Nancy", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-13.aspx" },
+            { nom: "Lunéville", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-13.aspx" },
+            { nom: "Cheverny", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-13.aspx" },
+            { nom: "Cargèse", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-14.aspx" },
+            { nom: "Le Rheu", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-14.aspx" },
+            { nom: "Paris-Tour Eiffel", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-14.aspx " },
+            { nom: "Saint-Véran", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-15.aspx" },
+            { nom: "Paris-Centre", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-16.aspx" },
+            { nom: "Paris-Palais de l’Elysée", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-17.aspx" },
+            { nom: "Paris-Assemblée nationale", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-17.aspx" },
+            { nom: "Paris-Sénat", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-17.aspx" },
+            { nom: "Paray-le-Monial", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Luxeuil-les-Bains", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Toulouse", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Kourou", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Octeville", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Hérouville-Saint-Clair", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Deauville-Trouville", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            { nom: "Sotteville-lès-Rouen", lon: "", lat: "", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            //{ nom:"Colmar", lon:"", lat:"", url:""},
+            //{ nom:"Pointe du Raz", lon:"", lat:"", url:""},
+            //{ nom:"République du Saugeais", lon:"", lat:"", url:""},
+            //{ nom:"Tours", lon:"", lat:"", url:""},
+            //{ nom:"Limoges", lon:"", lat:"", url:""},
+            //{ nom:"Le Puy-en-Velay", lon:"", lat:"", url:""},
+            //{ nom:"Saint-Jean-Pied-de-Port", lon:"", lat:"", url:""}
+            //{ nom:"", lon:"", lat:"", url:""}
+        ]
+
+
+        var map = L.map('map').setView([46.797, 3.042], 6);
+
+        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(map);
+
+
+        for (let i = 0; i < lay1.length; i++) {
+            const m = lay1[i]
+            L.marker([m.lat, m.lon]).addTo(map)
+                .bindPopup('<b>' + m.nom + '</b><br /><a href="' + m.url + '">Read article</a>');
+        }
+
+
+
+
+
+        /*
+        
+        COULEUR 2 : LIEUX DES COLLEGUES
+            • Marseille (13) (caché par un autre pin)
+            • Besançon (25)
+            • Grenoble (38)
+            • La Chapelle-des-Marais (44)
+            • Mercy-le-Haut (54) (caché par un autre pin)
+            • Metz (57)
+            • Thionville (57)
+            • Valenciennes (59)
+            • Wasquehal (59)
+            • Francières-Sucrerie (60)
+            • Strasbourg (67)
+            • Le Praz-de-Lys (74)
+            • Paris (75) (caché par un autre pin)
+            • Salernes (83)
+            • Saint-Dié-des-Vosges (88)
+            • Avallon (89)
+        
+        COULEUR 3 : LIEUX EUROPEENS
+            • Parlement européen => Allée du Printemps, 67 STRASBOURG
+            • Médiateur européen => Allée Spach, 67 STRASBOURG
+            • EBA => Tour Europlaza, 20 Avenue André Prothin, 92 PARIS LA DEFENSE
+            • ESMA => 201-203 Rue de Bercy, 75 PARIS
+            • ERA => 120 Rue Marc Lefrancq, 59 VALENCIENNES + 299 Boulevard de Leeds, 59 LILLE
+            • CPVO => 3 Boulevard du Maréchal Foch, 49 ANGERS
+            • EUISS => 100 Avenue de Suffren, 75 PARIS
+            • Maison Jean Monnet => 7 Chemin du Vieux Pressoir, Houjarray, 78 BAZOCHES SUR GUYONNE
+            • Maison Robert Schuman => 8-12 Rue Robert Schuman, 57 SCY-CHAZELLES
+        */
+
+
+
+    </script>
+
+</body>
+
+</html>
