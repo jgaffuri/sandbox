@@ -70,6 +70,7 @@
         const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
         const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png' });
         const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
+        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png' });
 
         var map = L.map('map').setView([46.797, 3.042], 6);
 
@@ -88,8 +89,9 @@
             if(m.url)
                 html += '<a href="' + m.url + '">Read article</a>'
             else
-                html += 'Article coming soon'
-            L.marker([m.lat, m.lon], { title: m.nom, icon:iconBlue }).addTo(map).bindPopup(html);
+                html += 'Article coming soon...'
+            const icon = m.url? iconOrange : iconGray
+            L.marker([m.lat, m.lon], { title: m.nom, icon:icon }).addTo(map).bindPopup(html);
         }
 
         /*
