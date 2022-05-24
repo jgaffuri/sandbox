@@ -63,14 +63,13 @@
             { nom: "Hérouville-Saint-Clair", lon: "-0.3332796", lat: "49.2036974", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Deauville-Trouville", lon: "0.0773596", lat: "49.3647273", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Sotteville-lès-Rouen", lon: "1.0888618", lat: "49.414093", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
-            //{ nom:"Colmar", lon:"", lat:"", url:""},
-            //{ nom:"Pointe du Raz", lon:"", lat:"", url:""},
-            //{ nom:"République du Saugeais", lon:"", lat:"", url:""},
-            //{ nom:"Tours", lon:"", lat:"", url:""},
-            //{ nom:"Limoges", lon:"", lat:"", url:""},
-            //{ nom:"Le Puy-en-Velay", lon:"", lat:"", url:""},
-            //{ nom:"Saint-Jean-Pied-de-Port", lon:"", lat:"", url:""}
-            //{ nom:"", lon:"", lat:"", url:""}
+            { nom:"Colmar", lon:"", lat:"", url:""},
+            { nom:"Pointe du Raz", lon:"", lat:"", url:""},
+            { nom:"République du Saugeais", lon:"", lat:"", url:""},
+            { nom:"Tours", lon:"", lat:"", url:""},
+            { nom:"Limoges", lon:"", lat:"", url:""},
+            { nom:"Le Puy-en-Velay", lon:"", lat:"", url:""},
+            { nom:"Saint-Jean-Pied-de-Port", lon:"", lat:"", url:""},
         ];
         //const icon1 = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
 
@@ -87,8 +86,12 @@
 
         for (let i = 0; i < lay1.length; i++) {
             const m = lay1[i]
-            L.marker([m.lat, m.lon], { title: m.nom /*, icon:icon1*/ }).addTo(map)
-                .bindPopup('<b>' + m.nom + '</b><br /><a href="' + m.url + '">Read article</a>');
+            const html = '<b>' + m.nom + '</b><br />'
+            if(m.url)
+                html += '<a href="' + m.url + '">Read article</a>'
+            else
+                html += 'Article coming soon'
+            L.marker([m.lat, m.lon], { title: m.nom /*, icon:icon1*/ }).addTo(map).bindPopup(html);
         }
 
         /*
