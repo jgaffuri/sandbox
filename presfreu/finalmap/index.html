@@ -30,7 +30,7 @@
 
     <script>
 
-        //LIEUX DES ARTICLES
+        //article data
         const lay1 = [
             { nom: "Mercy-le-Haut", lon: "5.82527", lat: "49.36854", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-4.aspx" },
             { nom: "Amiens", lon: "2.2956629", lat: "49.8940954", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-5.aspx" },
@@ -67,13 +67,17 @@
             { nom:"Le Puy-en-Velay", lon:"3.8851646", lat:"45.0472766", url:""},
             { nom:"Saint-Jean-Pied-de-Port", lon:"-1.2383229", lat:"43.1625047", url:""},
         ];
-        const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
+
+        //prepare icons
+        //const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
         const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png' });
-        const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
+        //const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
         const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png' });
 
+        //make map
         var map = L.map('map').setView([46.797, 3.042], 6);
 
+        //add background
         var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             id: 'mapbox/streets-v11',
@@ -83,14 +87,21 @@
             zoomOffset: -1
         }).addTo(map);
 
-        for (let i = 0; i < lay1.length; i++) {
-            const m = lay1[i]
+        //add markers
+        for (m of lay1) {
+            //const m = lay1[i]
+
+            //get icon
+            const icon = m.url? iconOrange : iconGray
+
+            //build popup message
             let html = '<b>' + m.nom + '</b><br />'
             if(m.url)
                 html += '<a href="' + m.url + '">Read article</a>'
             else
                 html += 'Article coming soon...'
-            const icon = m.url? iconOrange : iconGray
+
+            //add marker to map
             L.marker([m.lat, m.lon], { title: m.nom, icon:icon }).addTo(map).bindPopup(html);
         }
 
