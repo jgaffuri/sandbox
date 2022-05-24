@@ -59,20 +59,35 @@
             { nom: "Hérouville-Saint-Clair", lon: "-0.3332796", lat: "49.2036974", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Deauville-Trouville", lon: "0.0773596", lat: "49.3647273", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Sotteville-lès-Rouen", lon: "1.0888618", lat: "49.414093", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
-            { nom:"Colmar", lon:"7.3538222", lat:"48.0768296", url:""},
-            { nom:"Pointe du Raz", lon:"-4.7317515", lat:"48.0387982", url:""},
-            { nom:"République du Saugeais", lon:"6.462789", lat:"46.9925916", url:""},
-            { nom:"Tours", lon:"0.6933974", lat:"47.3953966", url:""},
-            { nom:"Limoges", lon:"1.2600133", lat:"45.8268988", url:""},
-            { nom:"Le Puy-en-Velay", lon:"3.8851646", lat:"45.0472766", url:""},
-            { nom:"Saint-Jean-Pied-de-Port", lon:"-1.2383229", lat:"43.1625047", url:""},
+            { nom: "Colmar", lon: "7.3538222", lat: "48.0768296", url: "" },
+            { nom: "Pointe du Raz", lon: "-4.7317515", lat: "48.0387982", url: "" },
+            { nom: "République du Saugeais", lon: "6.462789", lat: "46.9925916", url: "" },
+            { nom: "Tours", lon: "0.6933974", lat: "47.3953966", url: "" },
+            { nom: "Limoges", lon: "1.2600133", lat: "45.8268988", url: "" },
+            { nom: "Le Puy-en-Velay", lon: "3.8851646", lat: "45.0472766", url: "" },
+            { nom: "Saint-Jean-Pied-de-Port", lon: "-1.2383229", lat: "43.1625047", url: "" },
         ];
 
-        //prepare icons
-        //const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png' });
-        const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png' });
+        //EU places data
+        const lay2 = [
+            { nom: "Parlement européen", lon: "", lat: "", address: "Allée du Printemps, 67 STRASBOURG", url:"" },
+            { nom: "Médiateur européen", lon: "", lat: "", address: "Allée Spach, 67 STRASBOURG", url:"" },
+            { nom: "EBA", lon: "", lat: "", address: "Tour Europlaza, 20 Avenue André Prothin, 92 PARIS LA DEFENSE", url:"" },
+            { nom: "ESMA", lon: "", lat: "", address: "201-203 Rue de Bercy, 75 PARIS", url:"" },
+            { nom: "ERA", lon: "", lat: "", address: "120 Rue Marc Lefrancq, 59 VALENCIENNES", url:"" },
+            { nom: "ERA", lon: "", lat: "", address: "299 Boulevard de Leeds, 59 LILLE", url:"" },
+            { nom: "CPVO", lon: "", lat: "", address: "3 Boulevard du Maréchal Foch, 49 ANGERS", url:"" },
+            { nom: "EUISS", lon: "", lat: "", address: "100 Avenue de Suffren, 75 PARIS", url:"" },
+            { nom: "Maison Jean Monnet", lon: "", lat: "", address: "7 Chemin du Vieux Pressoir, Houjarray, 78 BAZOCHES SUR GUYONNE", url:"" },
+            { nom: "Maison Robert Schuman", lon: "", lat: "", address: "8-12 Rue Robert Schuman, 57 SCY-CHAZELLES", url:"" }
+        ]
+
+        //prepare icons. Default: iconSize: [25, 41] - iconAnchor: [12, 41] - shadowSize: [41, 41]
+        const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
+        const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
         //const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
-        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png' });
+        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
+        console.log(iconBlue)
 
         //make map
         var map = L.map('map').setView([46.797, 3.042], 6);
@@ -92,17 +107,17 @@
             //const m = lay1[i]
 
             //get icon
-            const icon = m.url? iconOrange : iconGray
+            const icon = m.url ? iconOrange : iconGray
 
             //build popup message
             let html = '<b>' + m.nom + '</b><br />'
-            if(m.url)
+            if (m.url)
                 html += '<a href="' + m.url + '">Read article</a>'
             else
                 html += 'Article coming soon...'
 
             //add marker to map
-            L.marker([m.lat, m.lon], { title: m.nom, icon:icon }).addTo(map).bindPopup(html);
+            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
         }
 
         /*
@@ -123,17 +138,6 @@
             • Salernes (83)
             • Saint-Dié-des-Vosges (88)
             • Avallon (89)
-        
-        COULEUR 3 : LIEUX EUROPEENS
-            • Parlement européen => Allée du Printemps, 67 STRASBOURG
-            • Médiateur européen => Allée Spach, 67 STRASBOURG
-            • EBA => Tour Europlaza, 20 Avenue André Prothin, 92 PARIS LA DEFENSE
-            • ESMA => 201-203 Rue de Bercy, 75 PARIS
-            • ERA => 120 Rue Marc Lefrancq, 59 VALENCIENNES + 299 Boulevard de Leeds, 59 LILLE
-            • CPVO => 3 Boulevard du Maréchal Foch, 49 ANGERS
-            • EUISS => 100 Avenue de Suffren, 75 PARIS
-            • Maison Jean Monnet => 7 Chemin du Vieux Pressoir, Houjarray, 78 BAZOCHES SUR GUYONNE
-            • Maison Robert Schuman => 8-12 Rue Robert Schuman, 57 SCY-CHAZELLES
         */
 
     </script>
