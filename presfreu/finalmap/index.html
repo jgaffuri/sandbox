@@ -82,12 +82,13 @@
             { nom: "Maison Robert Schuman", lon: "", lat: "", address: "8-12 Rue Robert Schuman, 57 SCY-CHAZELLES", url: "" }
         ]
 
+
         //prepare icons. Default: iconSize: [25, 41] - iconAnchor: [12, 41] - shadowSize: [41, 41]
-        const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
-        const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
-        //const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
-        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
-        console.log(iconBlue)
+        const makeIcon = col => new L.Icon.Default({ iconUrl: 'marker_'+col+'.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] })
+        const iconBlue = makeIcon("bl");
+        const iconOrange = makeIcon("or");
+        //const iconPurple = makeIcon("pu");
+        const iconGray = makeIcon("gr");
 
         //make map
         var map = L.map('map').setView([46.797, 3.042], 6);
