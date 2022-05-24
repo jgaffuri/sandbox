@@ -112,7 +112,7 @@
             //build popup message
             let html = '<b>' + m.nom + '</b><br />'
             if (m.url)
-                html += '<a href="' + m.url + '">Read article</a>'
+                html += '<a target="_blank" rel="noopener noreferrer" href="' + m.url + '">Read article</a>'
             else
                 html += 'Article coming soon...'
 
