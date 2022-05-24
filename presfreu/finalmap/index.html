@@ -70,23 +70,23 @@
 
         //EU places data
         const lay2 = [
-            { nom: "Parlement européen", lon: "", lat: "", address: "Allée du Printemps, 67 STRASBOURG", url:"" },
-            { nom: "Médiateur européen", lon: "", lat: "", address: "Allée Spach, 67 STRASBOURG", url:"" },
-            { nom: "EBA", lon: "", lat: "", address: "Tour Europlaza, 20 Avenue André Prothin, 92 PARIS LA DEFENSE", url:"" },
-            { nom: "ESMA", lon: "", lat: "", address: "201-203 Rue de Bercy, 75 PARIS", url:"" },
-            { nom: "ERA", lon: "", lat: "", address: "120 Rue Marc Lefrancq, 59 VALENCIENNES", url:"" },
-            { nom: "ERA", lon: "", lat: "", address: "299 Boulevard de Leeds, 59 LILLE", url:"" },
-            { nom: "CPVO", lon: "", lat: "", address: "3 Boulevard du Maréchal Foch, 49 ANGERS", url:"" },
-            { nom: "EUISS", lon: "", lat: "", address: "100 Avenue de Suffren, 75 PARIS", url:"" },
-            { nom: "Maison Jean Monnet", lon: "", lat: "", address: "7 Chemin du Vieux Pressoir, Houjarray, 78 BAZOCHES SUR GUYONNE", url:"" },
-            { nom: "Maison Robert Schuman", lon: "", lat: "", address: "8-12 Rue Robert Schuman, 57 SCY-CHAZELLES", url:"" }
+            { nom: "European Parliament", lon: "7.7686192", lat: "48.5974229", address: "Allée du Printemps, 67070 STRASBOURG", url: "https://www.europarl.europa.eu" },
+            { nom: "European Ombudsman", lon: "7.7696583", lat: "48.5940953", address: "Allée Spach, 67000 STRASBOURG", url: "https://www.ombudsman.europa.eu/" },
+            { nom: "European Banking Authority (EBA)", lon: "2.2450104", lat: "48.8916847", address: "Tour Europlaza, 20 Avenue André Prothin, 92400 PARIS LA DEFENSE", url: "https://www.eba.europa.eu/" },
+            { nom: "European Securities and Markets Authority (ESMA)", lon: "2.3710761", lat: "48.8444507", address: "201-203 Rue de Bercy, 75012 PARIS", url: "https://www.esma.europa.eu" },
+            { nom: "EU Agency for Railways (ERA)", lon: "3.5273269", lat: "50.365179", address: "120 Rue Marc Lefrancq, 59300 VALENCIENNES", url: "https://www.era.europa.eu/" },
+            { nom: "EU Agency for Railways (ERA)", lon: "3.075383", lat: "50.6402824", address: "299 Boulevard de Leeds, 59777 LILLE", url: "https://www.era.europa.eu/" },
+            { nom: "Community Plant Variety Office (CPVO)", lon: "-0.5478401", lat: "47.4692306", address: "3 Boulevard du Maréchal Foch, 49100 ANGERS", url: "https://cpvo.europa.eu/" },
+            { nom: "EUISS", lon: "", lat: "", address: "100 Avenue de Suffren, 75 PARIS", url: "" },
+            { nom: "Maison Jean Monnet", lon: "", lat: "", address: "7 Chemin du Vieux Pressoir, Houjarray, 78 BAZOCHES SUR GUYONNE", url: "" },
+            { nom: "Maison Robert Schuman", lon: "", lat: "", address: "8-12 Rue Robert Schuman, 57 SCY-CHAZELLES", url: "" }
         ]
 
         //prepare icons. Default: iconSize: [25, 41] - iconAnchor: [12, 41] - shadowSize: [41, 41]
-        const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
-        const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
+        const iconBlue = new L.Icon.Default({ iconUrl: 'marker_bl.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
+        const iconOrange = new L.Icon.Default({ iconUrl: 'marker_or.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
         //const iconPurple = new L.Icon.Default({ iconUrl: 'marker_pu.png' });
-        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png', iconSize: [15,25], iconAnchor: [7,25], shadowSize: [25, 25] });
+        const iconGray = new L.Icon.Default({ iconUrl: 'marker_gr.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] });
         console.log(iconBlue)
 
         //make map
@@ -102,9 +102,8 @@
             zoomOffset: -1
         }).addTo(map);
 
-        //add markers
+        //layer 1
         for (m of lay1) {
-            //const m = lay1[i]
 
             //get icon
             const icon = m.url ? iconOrange : iconGray
@@ -119,6 +118,30 @@
             //add marker to map
             L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
         }
+
+
+
+        //layer 2
+        for (m of lay2) {
+
+            //get icon
+            const icon = m.url ? iconBlue : iconGray
+
+            //build popup message
+            let html = '<b>' + m.nom + '</b><br />'
+            if (m.address)
+                html += m.address + "<br />"
+            if (m.url)
+                html += '<a target="_blank" rel="noopener noreferrer" href="' + m.url + '">Website</a>'
+
+            //add marker to map
+            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
+        }
+
+
+
+
+
 
         /*
         COULEUR 2 : LIEUX DES COLLEGUES
