@@ -83,8 +83,9 @@
         ]
 
 
-        //prepare icons. Default: iconSize: [25, 41] - iconAnchor: [12, 41] - shadowSize: [41, 41]
-        const makeIcon = col => new L.Icon.Default({ iconUrl: 'marker_'+col+'.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] })
+        //prepare icons
+        //Default: iconSize: [25, 41] - iconAnchor: [12, 41] - shadowSize: [41, 41]
+        const makeIcon = col => new L.Icon.Default({ iconUrl: 'marker_' + col + '.png', iconSize: [15, 25], iconAnchor: [7, 25], shadowSize: [25, 25] })
         const iconBlue = makeIcon("bl");
         const iconOrange = makeIcon("or");
         //const iconPurple = makeIcon("pu");
@@ -102,6 +103,8 @@
             tileSize: 512,
             zoomOffset: -1
         }).addTo(map);
+
+
 
         //layer 1
         for (m of lay1) {
@@ -138,10 +141,6 @@
             //add marker to map
             L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
         }
-
-
-
-
 
 
         /*
