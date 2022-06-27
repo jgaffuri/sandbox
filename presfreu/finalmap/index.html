@@ -31,7 +31,7 @@
     <script>
 
         //https://myintracomm.ec.europa.eu/dg/ESTAT/1-whoswho/Directorates/DG/Pages/Celebration-of-the-French-Presidency-2022.aspx
-        
+
         //article data
         const lay1 = [
             { nom: "Mercy-le-Haut", lon: "5.82527", lat: "49.36854", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-4.aspx" },
@@ -60,14 +60,34 @@
             { nom: "Octeville", lon: "-1.6439345", lat: "49.6245694", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Hérouville-Saint-Clair", lon: "-0.3332796", lat: "49.2036974", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
             { nom: "Deauville-Trouville", lon: "0.0773596", lat: "49.3647273", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
-            { nom: "Sotteville-lès-Rouen", lon: "1.0888618", lat: "49.414093", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
-            { nom: "Colmar", lon: "7.3538222", lat: "48.0768296", url: "" },
-            { nom: "Pointe du Raz", lon: "-4.7317515", lat: "48.0387982", url: "" },
-            //{ nom: "République du Saugeais", lon: "6.462789", lat: "46.9925916", url: "" },
-            { nom: "Tours", lon: "0.6933974", lat: "47.3953966", url: "" },
-            { nom: "Limoges", lon: "1.2600133", lat: "45.8268988", url: "" },
-            { nom: "Le Puy-en-Velay", lon: "3.8851646", lat: "45.0472766", url: "" },
-            { nom: "Saint-Jean-Pied-de-Port", lon: "-1.2383229", lat: "43.1625047", url: "" },
+            { nom: "Cluny", lon: "4.6585767", lat: "46.434472", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-22.aspx" },
+            { nom: "Natzwiller", lon: "7.252988973509349", lat: "48.438185662044056", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-22.aspx" },
+            { nom: "Le Chambon-sur-Lignon", lon: "4.302462294191981", lat: "45.0603635291602", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-22.aspx" },
+
+            //{ nom: "Sotteville-lès-Rouen", lon: "1.0888618", lat: "49.414093", url: "https://myintracomm.ec.europa.eu/dg/ESTAT/News/Pages/Virtual-celebration-of-the-French-Presidency-of-the-EU-20.aspx" },
+            //{ nom: "Colmar", lon: "7.3538222", lat: "48.0768296", url: "" },
+            //{ nom: "Pointe du Raz", lon: "-4.7317515", lat: "48.0387982", url: "" },
+            //{ nom: "Tours", lon: "0.6933974", lat: "47.3953966", url: "" },
+            //{ nom: "Limoges", lon: "1.2600133", lat: "45.8268988", url: "" },
+            //{ nom: "Le Puy-en-Velay", lon: "3.8851646", lat: "45.0472766", url: "" },
+            //{ nom: "Saint-Jean-Pied-de-Port", lon: "-1.2383229", lat: "43.1625047", url: "" },
+            /*
+                • Eguisheim (68) => Eguisheim, an emblematic village of Alsace (europa.eu)
+                • Pointe du Raz (29) => La Pointe du Raz (europa.eu) 
+                • Montgeron (91) => Le Tour de France (europa.eu)
+                • Paris-Champs Elysées (75) => Le Tour de France (europa.eu)
+                • Tours (37) => Les Chemins de Compostelle (europa.eu)
+                • Limoges (87) =>Les Chemins de Compostelle (europa.eu)
+                • Le Puy-en-Velay (43) =>Les Chemins de Compostelle (europa.eu)
+                • Saint-Jean-Pied-de-Port (64) =>Les Chemins de Compostelle (europa.eu)
+                • Conques (12) =>Les Chemins de Compostelle (europa.eu)
+                • Melles (31) => Histoires d’Europe en France 3 (europa.eu)
+                • Thury-sous-Clermont (60) => Histoires d’Europe en France 3 (europa.eu)
+                • Hendaye (64) =>Histoires d’Europe en France 3 (europa.eu)
+                • Marigot (97-Saint Martin) => Histoires d’Europe en France 3 (europa.eu)
+                • Darney (88) => Histoires d’Europe en France 3 (europa.eu)
+            */
+
         ];
 
         //EU places data
@@ -83,6 +103,62 @@
             { nom: "Maison Jean Monnet", lon: "1.8520581", lat: "48.7709414", address: "7 Chemin du Vieux Pressoir, Houjarray, 78470 BAZOCHES SUR GUYONNE", url: "https://www.jean-monnet-europe.eu/" },
             { nom: "Maison Robert Schuman", lon: "6.1114988", lat: "49.1107003", address: "8-12 Rue Robert Schuman, 57160 SCY-CHAZELLES", url: "http://www.centre-robert-schuman.org/" }
         ]
+
+
+        //colleagues
+        const lay3 = [
+            //Saint-Affrique (12)
+            { nom: "", lon: "", lat: "" },
+            //Marseille (13) (caché par un autre pin)
+            { nom: "", lon: "", lat: "" },
+            //Besançon (25)
+            { nom: "", lon: "", lat: "" },
+            //Grenoble (38)
+            { nom: "", lon: "", lat: "" },
+            //La Chapelle-des-Marais (44)
+            { nom: "", lon: "", lat: "" },
+            //Mercy-le-Haut (54) (caché par un autre pin)
+            { nom: "", lon: "", lat: "" },
+            //Bouzonville (57)
+            { nom: "", lon: "", lat: "" },
+            //Metz (57)
+            { nom: "", lon: "", lat: "" },
+            //Thionville (57)
+            { nom: "", lon: "", lat: "" },
+            //Valenciennes (59)
+            { nom: "", lon: "", lat: "" },
+            //Wasquehal (59)
+            { nom: "", lon: "", lat: "" },
+            //Francières-Sucrerie (60)
+            { nom: "", lon: "", lat: "" },
+            //Strasbourg (67) (caché par un autre pin)
+            { nom: "", lon: "", lat: "" },
+            //Le Praz-de-Lys (74)
+            { nom: "", lon: "", lat: "" },
+            //Paris (75) (caché par un autre pin)
+            { nom: "", lon: "", lat: "" },
+            //Salernes (83)
+            { nom: "", lon: "", lat: "" },
+            //Saint-Dié-des-Vosges (88)
+            { nom: "", lon: "", lat: "" },
+            //Avallon (89)
+            { nom: "", lon: "", lat: "" },
+            //Vincennes (94)
+            { nom: "", lon: "", lat: "" },
+            //Lyon (69)
+            { nom: "", lon: "", lat: "" },
+            //Longwy (54)
+            { nom: "", lon: "", lat: "" },
+            //Saulcy sur Meurthe (88)
+            { nom: "", lon: "", lat: "" },
+            //Tours (37)
+            { nom: "", lon: "", lat: "" },
+            //Bernay (27)
+            { nom: "", lon: "", lat: "" },
+            //Vincennes (94)
+            { nom: "", lon: "", lat: "" },
+        ]
+
 
 
         //prepare icons
