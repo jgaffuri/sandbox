@@ -138,7 +138,7 @@
         map.attributionControl.setPrefix(false)
 
         //add background
-        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+        /*var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
             {
                 maxZoom: 18,
                 id: 'mapbox/streets-v11',
@@ -146,11 +146,32 @@
                 tileSize: 512,
                 zoomOffset: -1
             }
+        ).addTo(map);*/
+
+
+        var tiles = L.tileLayer(
+            "https://wxs.ign.fr/CLEF/geoportail/wmts?" +
+            "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0" +
+            "&STYLE=normal" +
+            "&TILEMATRIXSET=PM" +
+            "&FORMAT=image/jpeg" +
+            "&LAYER=ORTHOIMAGERY.ORTHOPHOTOS" +
+            "&TILEMATRIX={z}" +
+            "&TILEROW={y}" +
+            "&TILECOL={x}",
+            {
+                minZoom: 0,
+                maxZoom: 18,
+                attribution: "IGN-F/Geoportail",
+                tileSize: 256 // les tuiles du Géooportail font 256x256px
+            }
         ).addTo(map);
 
 
 
+
         //layer 1
+        const lg1 = []
         for (m of lay1) {
 
             //get icon
@@ -164,44 +185,47 @@
                 html += 'Article coming soon...'
 
             //add marker to map
-            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
+            lg1.push(L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).bindPopup(html))
         }
-
+        const lg1_ = L.layerGroup(lg1).addTo(map)
 
 
         //layer 2
+        const lg2 = []
         for (m of lay2) {
 
             //get icon
             const icon = m.url ? iconBlue : iconGray
 
             //build popup message
-            let html = '<b>' + m.nom + '</b><br />'
+            let html = 'EU in France:<br>' + '<b>' + m.nom + '</b><br />'
             if (m.address)
                 html += m.address + "<br />"
             if (m.url)
                 html += '<a target="_blank" rel="noopener noreferrer" href="' + m.url + '">Website</a>'
 
             //add marker to map
-            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
+            lg2.push(L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).bindPopup(html))
         }
-
+        const lg2_ = L.layerGroup(lg2).addTo(map)
 
 
         //layer 3
+        const lg3 = []
         for (m of lay3) {
 
             //get icon
             const icon = iconPurple
 
             //build popup message
-            let html = 'A Eurostat colleagues is from <b>' + m.nom + '</b> !<br />'
+            let html = 'A Eurostat colleague is from <b>' + m.nom + '</b> !<br />'
 
             //add marker to map
-            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
+            lg3.push(L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).bindPopup(html))
         }
+        const lg3_ = L.layerGroup(lg3).addTo(map)
 
-
+        const layerControl = L.control.layers({}, { "<img src='./images/marker_or.png' alt='a' width='15' height='25'> Cybernews articles": lg1_, "<img src='./images/marker_bl.png' alt='a' width='15' height='25'> EU in France": lg2_, "<img src='./images/marker_pu.png' alt='a' width='15' height='25'> Eurostat colleagues": lg3_ }, { collapsed: false }).addTo(map);
 
     </script>
 </body>
