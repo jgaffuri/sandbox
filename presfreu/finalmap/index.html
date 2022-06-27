@@ -107,56 +107,45 @@
 
         //colleagues
         const lay3 = [
-            //Saint-Affrique (12)
-            { nom: "", lon: "", lat: "" },
-            //Marseille (13) (caché par un autre pin)
-            { nom: "", lon: "", lat: "" },
-            //Besançon (25)
-            { nom: "", lon: "", lat: "" },
-            //Grenoble (38)
-            { nom: "", lon: "", lat: "" },
-            //La Chapelle-des-Marais (44)
-            { nom: "", lon: "", lat: "" },
-            //Mercy-le-Haut (54) (caché par un autre pin)
-            { nom: "", lon: "", lat: "" },
-            //Bouzonville (57)
-            { nom: "", lon: "", lat: "" },
-            //Metz (57)
-            { nom: "", lon: "", lat: "" },
-            //Thionville (57)
-            { nom: "", lon: "", lat: "" },
-            //Valenciennes (59)
-            { nom: "", lon: "", lat: "" },
-            //Wasquehal (59)
-            { nom: "", lon: "", lat: "" },
-            //Francières-Sucrerie (60)
-            { nom: "", lon: "", lat: "" },
-            //Strasbourg (67) (caché par un autre pin)
-            { nom: "", lon: "", lat: "" },
-            //Le Praz-de-Lys (74)
-            { nom: "", lon: "", lat: "" },
-            //Paris (75) (caché par un autre pin)
-            { nom: "", lon: "", lat: "" },
-            //Salernes (83)
-            { nom: "", lon: "", lat: "" },
-            //Saint-Dié-des-Vosges (88)
-            { nom: "", lon: "", lat: "" },
-            //Avallon (89)
+            { nom: "Saint-Affrique", lon: "2.887751182640147", lat: "43.95809067889372" },
+            { nom: "Marseille", lon: "5.399341187947789", lat: "43.30727003311384" },
+            { nom: "Besançon", lon: "6.0225327578729235", lat: "47.23978559141306" },
+            { nom: "Grenoble", lon: "5.732107805076573", lat: "45.1888249340208" },
+            { nom: "La Chapelle-des-Marais", lon: "-2.24084079764679", lat: "47.44730892484439" },
+            { nom: "Mercy-le-Haut", lon: "5.8257266636386555", lat: "49.3673699734018" },
+            { nom: "Bouzonville", lon: "6.533966208230227", lat: "49.29171262948805" },
+            { nom: "Metz", lon: "6.17606816240234", lat: "49.1198412760117" },
+            { nom: "Thionville", lon: "6.167086064563678", lat: "49.35762638613683" },
+            { nom: "Valenciennes", lon: "3.523848221365369", lat: "50.3585566291859" },
+            { nom: "Wasquehal", lon: "3.1311626118644655", lat: "50.6696716647641" },
+            //check
+            { nom: "Francières-Sucrerie", lon: "2.6793194684730612", lat: "49.44882128098754" },
+            // (67) (caché par un autre pin)
+            { nom: "Strasbourg", lon: "7.745775623703732", lat: "48.58337488579924" },
+            // (74)
+            { nom: "Le Praz-de-Lys", lon: "6.592295414291864", lat: "46.149172097300294" },
+            // (75) (caché par un autre pin)
+            { nom: "Paris", lon: "2.3393972440251596", lat: "48.8577468051555" },
+            // (83)
+            { nom: "Salernes", lon: "", lat: "" },
+            // (88)
+            { nom: "Saint-Dié-des-Vosges", lon: "", lat: "" },
+            // (89)
             { nom: "", lon: "", lat: "" },
             //Vincennes (94)
-            { nom: "", lon: "", lat: "" },
-            //Lyon (69)
-            { nom: "", lon: "", lat: "" },
-            //Longwy (54)
-            { nom: "", lon: "", lat: "" },
-            //Saulcy sur Meurthe (88)
-            { nom: "", lon: "", lat: "" },
-            //Tours (37)
-            { nom: "", lon: "", lat: "" },
-            //Bernay (27)
-            { nom: "", lon: "", lat: "" },
-            //Vincennes (94)
-            { nom: "", lon: "", lat: "" },
+            { nom: "Avallon", lon: "", lat: "" },
+            // (69)
+            { nom: "Lyon", lon: "", lat: "" },
+            // (54)
+            { nom: "Longwy", lon: "", lat: "" },
+            // (88)
+            { nom: "Saulcy sur Meurthe", lon: "", lat: "" },
+            // (37)
+            { nom: "Tours", lon: "", lat: "" },
+            // (27)
+            { nom: "Bernay", lon: "", lat: "" },
+            // (94)
+            { nom: "Vincennes", lon: "", lat: "" },
         ]
 
 
@@ -219,27 +208,6 @@
             //add marker to map
             L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
         }
-
-
-        /*
-        COULEUR 2 : LIEUX DES COLLEGUES
-            • Marseille (13) (caché par un autre pin)
-            • Besançon (25)
-            • Grenoble (38)
-            • La Chapelle-des-Marais (44)
-            • Mercy-le-Haut (54) (caché par un autre pin)
-            • Metz (57)
-            • Thionville (57)
-            • Valenciennes (59)
-            • Wasquehal (59)
-            • Francières-Sucrerie (60)
-            • Strasbourg (67)
-            • Le Praz-de-Lys (74)
-            • Paris (75) (caché par un autre pin)
-            • Salernes (83)
-            • Saint-Dié-des-Vosges (88)
-            • Avallon (89)
-        */
 
     </script>
 </body>
