@@ -120,32 +120,18 @@
             { nom: "Wasquehal", lon: "3.1311626118644655", lat: "50.6696716647641" },
             //check
             { nom: "Francières-Sucrerie", lon: "2.6793194684730612", lat: "49.44882128098754" },
-            // (67) (caché par un autre pin)
             { nom: "Strasbourg", lon: "7.745775623703732", lat: "48.58337488579924" },
-            // (74)
             { nom: "Le Praz-de-Lys", lon: "6.592295414291864", lat: "46.149172097300294" },
-            // (75) (caché par un autre pin)
             { nom: "Paris", lon: "2.3393972440251596", lat: "48.8577468051555" },
-            // (83)
-            { nom: "Salernes", lon: "", lat: "" },
-            // (88)
-            { nom: "Saint-Dié-des-Vosges", lon: "", lat: "" },
-            // (89)
-            { nom: "", lon: "", lat: "" },
-            //Vincennes (94)
-            { nom: "Avallon", lon: "", lat: "" },
-            // (69)
-            { nom: "Lyon", lon: "", lat: "" },
-            // (54)
-            { nom: "Longwy", lon: "", lat: "" },
-            // (88)
-            { nom: "Saulcy sur Meurthe", lon: "", lat: "" },
-            // (37)
-            { nom: "Tours", lon: "", lat: "" },
-            // (27)
-            { nom: "Bernay", lon: "", lat: "" },
-            // (94)
-            { nom: "Vincennes", lon: "", lat: "" },
+            { nom: "Salernes", lon: "6.233192334476107", lat: "43.5635796394556" },
+            { nom: "Saint-Dié-des-Vosges", lon: "6.94744489751006", lat: "48.286510025502345" },
+            { nom: "Avallon", lon: "3.9073098596303146", lat: "47.488449253380324" },
+            { nom: "Vincennes", lon: "2.439052795620854", lat: "48.84427457700301" },
+            { nom: "Lyon", lon: "4.832205833111636", lat: "45.75783875036767" },
+            { nom: "Longwy", lon: "5.763137562127949", lat: "49.5240305976277" },
+            { nom: "Saulcy sur Meurthe", lon: "6.959640621120698", lat: "48.23616225976944" },
+            { nom: "Tours", lon: "0.6862155505422689", lat: "47.396727587235716" },
+            { nom: "Bernay", lon: "0.5976169680940905", lat: "49.089484426435796" },
         ]
 
 
@@ -156,20 +142,23 @@
         const iconBlue = makeIcon("bl");
         const iconOrange = makeIcon("or");
         const iconGray = makeIcon("gr");
-        //const iconPurple = makeIcon("pu");
+        const iconPurple = makeIcon("pu");
 
         //make map
         var map = L.map('map').setView([46.797, 3.042], 6);
 
         //add background
-        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            tileSize: 512,
-            zoomOffset: -1
-        }).addTo(map);
+        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+            {
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                attributionControl: false,
+                attribution: "", //'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                //'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                tileSize: 512,
+                zoomOffset: -1
+            }
+        ).addTo(map);
 
 
 
@@ -208,6 +197,23 @@
             //add marker to map
             L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
         }
+
+
+
+        //layer 3
+        for (m of lay3) {
+
+            //get icon
+            const icon = iconPurple
+
+            //build popup message
+            let html = 'A Eurostat colleagues is from <b>' + m.nom + '</b> !<br />'
+
+            //add marker to map
+            L.marker([m.lat, m.lon], { title: m.nom, icon: icon }).addTo(map).bindPopup(html);
+        }
+
+
 
     </script>
 </body>
